@@ -6,7 +6,7 @@ typedef struct BankAccount_struct
   char username[12];
   char password[12]; 
   int accountBalance;
-  struct BankAccount_struct* nextAccount;
+  struct BankAccount_struct* next;
 
 } BankAccount;
 
@@ -14,7 +14,7 @@ void transferFunds(BankAccount *AccountSending, BankAccount *AccountRecieving, i
 void Deposit(BankAccount *Account, int amount);
 void Withdrawl(BankAccount *Account, int amount);
 char* GetPassword(char *username, BankAccount *HeadAccount);
-void createAccount(BankAccount *AccountCreated, char *username, char *password);
+void createAccount(BankAccount *AccountCreated, BankAccount *tail, char *username, char *password);
 
 
 
