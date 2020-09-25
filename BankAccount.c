@@ -3,17 +3,20 @@
 #include <string.h>
 #include "BankAccount.h"
 
-void createAccount(BankAccount *AccountCreated, BankAccount *tail,  char *username, char *password){
+void createAccount(BankAccount *AccountCreated, BankAccount *tail, BankAccount *head, char *username, char *password)
+{
 
-  strcpy(AccountCreated-> username, username);
-  strcpy(AccountCreated-> password, password);
-  tail-> next = AccountCreated;
-  AccountCreated-> next = NULL;
-  tail = AccountCreated;
 
+    strcpy(AccountCreated->username, username);
+    strcpy(AccountCreated->password, password);
+    AccountCreated->accountBalance = 0;
+
+  
 }
 
-char* GetPassword(char *username, BankAccount *HeadAccount){
+char *GetPassword(char *username, BankAccount *HeadAccount)
+{
+
   BankAccount *temp;
   temp = (BankAccount *)malloc(sizeof(BankAccount));
 
@@ -21,22 +24,29 @@ char* GetPassword(char *username, BankAccount *HeadAccount){
 
   while (temp)
   {
-    if (!strcmp(temp-> username, username) == 0)
+    if (strcmp(temp->username, username) != 0)
     {
-      temp = temp -> next;
+      temp = temp->next;
     }
     else
     {
-      return temp ->password;
+      return temp->password;
     }
-    
   }
-
-  printf("Account does not exist.\n");
   return NULL;
-
-  
 }
 
 
 
+
+
+void PrintNodes(BankAccount *head){
+   while (head)
+  {
+    printf("%s\n", head -> username);
+    head = head-> next;
+
+  }
+}
+
+void Deposit()

@@ -10,11 +10,12 @@ typedef struct BankAccount_struct
 
 } BankAccount;
 
-void transferFunds(BankAccount *AccountSending, BankAccount *AccountRecieving, int amount );
+//void transferFunds(BankAccount *AccountSending, BankAccount *AccountRecieving, int amount );
 void Deposit(BankAccount *Account, int amount);
 void Withdrawl(BankAccount *Account, int amount);
 char* GetPassword(char *username, BankAccount *HeadAccount);
-void createAccount(BankAccount *AccountCreated, BankAccount *tail, char *username, char *password);
+void createAccount(BankAccount *AccountCreated, BankAccount *tail, BankAccount *head, char *username, char *password);
+void PrintNodes(BankAccount *head);
 
 
 
