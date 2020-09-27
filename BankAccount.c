@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include "BankAccount.h"
-//a
+
 void createAccount(BankAccount *AccountCreated, BankAccount *tail, BankAccount *head, char *username, char *password)
 {
-  while (head){
-    if (strcmp(head->username, username) == 0){
+  while (head)
+  {
+    if (strcmp(head->username, username) == 0)
+    {
       printf("username already in use\n");
       return;
     }
@@ -75,12 +77,12 @@ void BankMenu(BankAccount *thisNode)
 
 void Deposit(BankAccount *thisNode, int amount)
 {
-  if (amount<1)
+  if (amount < 1)
   {
     printf("can not depoist less than one dollar");
     return;
   }
-  
+
   thisNode->accountBalance += amount;
   printf("\nyou deposited: %d\n", amount);
   printf("your account balance: %d\n", thisNode->accountBalance);
@@ -88,51 +90,40 @@ void Deposit(BankAccount *thisNode, int amount)
 
 void Withdrawl(BankAccount *thisNode, int amount)
 {
-  if (thisNode->accountBalance< amount)
+  if (thisNode->accountBalance < amount)
   {
     printf("amount not available");
     return;
   }
-  
+
   thisNode->accountBalance -= amount;
   printf("\nyou Withdrew: %d\n", amount);
   printf("your account balance: %d\n\n", thisNode->accountBalance);
 }
 
-char *Encrypt(char message[])
-{
-  char ch;
+void Encrypt(char message[]){
   int i, key;
-
   key = 3;
-
-  for (i = 0; message[i] != '\0'; ++i)
+  char *pointer = message;
+  char *temp;
+  for (i = 0; i < strlen(message); ++i)
   {
-    ch = message[i];
-
-    if (ch >= 'a' && ch <= 'z')
+    temp = pointer + i;
+    if (*temp >= 'a' && *temp <= 'z')
     {
-      ch = ch + key;
-
-      if (ch > 'z')
+      *temp = *temp + key;
+      if (*temp > 'z')
       {
-        ch = ch - 'z' + 'a' - 1;
+        *temp = *temp - 'z' + 'a' - 1;
       }
-
-      message[i] = ch;
     }
-    else if (ch >= 'A' && ch <= 'Z')
+    else if (*temp >= 'A' && *temp <= 'Z')
     {
-      ch = ch + key;
-
-      if (ch > 'Z')
+      *temp = *temp + key;
+      if (*temp > 'Z')
       {
-        ch = ch - 'Z' + 'A' - 1;
+        *temp = *temp - 'Z' + 'A' - 1;
       }
-
-      message[i] = ch;
     }
   }
-
-  return message;
 }
