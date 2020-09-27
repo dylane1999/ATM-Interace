@@ -10,6 +10,8 @@ int main(void)
   BankAccount *tail = NULL;
   head = (BankAccount *)malloc(sizeof(BankAccount));
   tail = (BankAccount *)malloc(sizeof(BankAccount));
+  BankAccount *thisNode = NULL;
+  thisNode = (BankAccount *)malloc(sizeof(BankAccount));
   char username[12];
   char password[12];
   int userInput;
@@ -33,11 +35,10 @@ int main(void)
     scanf("%s", username);
     printf("\ninput password: ");
     scanf("%s", password);
+    Encrypt(password);
 
     if (userInput == 1 && usersCreated < 1)
     {
-      BankAccount *thisNode = NULL;
-      thisNode = (BankAccount *)malloc(sizeof(BankAccount));
       createAccount(thisNode, tail, head, username, password);
       usersCreated++;
       head = thisNode;
@@ -45,8 +46,6 @@ int main(void)
     }
     else if (userInput == 1)
     {
-      BankAccount *thisNode = NULL;
-      thisNode = (BankAccount *)malloc(sizeof(BankAccount));
       createAccount(thisNode, tail, head, username, password);
       usersCreated++;
       tail->next = thisNode;
@@ -55,7 +54,7 @@ int main(void)
     }
     else if (userInput == 2 && usersCreated > 0)
     {
-      (strcmp(GetPassword(username, head), password) == 0) ? printf("passowrd and username match\n") : printf("passowrd and username do not match\n");
+      (strcmp(GetPassword(username, head), password) == 0) ? BankMenu(thisNode) : printf("passowrd and username do not match\n");
     }
     else
     {

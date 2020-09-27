@@ -16,6 +16,8 @@ void Withdrawl(BankAccount *Account, int amount);
 char* GetPassword(char *username, BankAccount *HeadAccount);
 void createAccount(BankAccount *AccountCreated, BankAccount *tail, BankAccount *head, char *username, char *password);
 void PrintNodes(BankAccount *head);
+void BankMenu(BankAccount *thisNode);
+char* Encrypt(char message[]);
 
 
 
