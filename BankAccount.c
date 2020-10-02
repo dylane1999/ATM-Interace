@@ -127,3 +127,16 @@ void Encrypt(char message[]){
     }
   }
 }
+
+void Transfer(BankAccount *Giver, BankAccount *Reciever,  int amount){
+
+    if (Giver->accountBalance < amount | amount < 0)
+  {
+    printf("amount not available to transfer");
+    return;
+  }
+
+  Giver->accountBalance = Giver->accountBalance - amount;
+  Reciever->accountBalance = Reciever->accountBalance + amount;
+
+}
