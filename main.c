@@ -2,6 +2,31 @@
 #include <stdlib.h>
 #include <string.h>
 #include "BankAccount.h"
+#include <regex.h>
+#include <stdbool.h>
+#include <ctype.h>
+
+int TestPassword(char *password)
+{
+  bool hasUpper = false;
+  bool hasLower = false;
+  bool hasDigit = false;
+
+  for (int i = 0; i < strlen(password); ++i)  //at least one upper character and one lower character one digit 
+  {
+
+    if (islower(password[i]))
+      hasLower = true;
+
+    if (isupper(password[i]))
+      hasUpper = true;
+
+    if (isdigit(password[i]))
+      hasDigit = true;
+  }
+
+  return ((hasLower && hasUpper && hasDigit) ? 1 : 0);
+}
 
 int main(void)
 {
@@ -19,6 +44,7 @@ int main(void)
 
   while (1)
   {
+    int ValidPassword = 0;
 
     printf("sign up : 1\n");
     printf("log in : 2\n");
@@ -35,6 +61,13 @@ int main(void)
     scanf("%s", username);
     printf("\ninput password: ");
     scanf("%s", password);
+    ValidPassword = TestPassword(password);
+    if (!ValidPassword)
+    {
+      printf("not a valid password, must contain at least one upper character and one lower character one digit. \n");
+      return 0;
+    }
+
     Encrypt(password);
 
     if (userInput == 1 && usersCreated < 1)

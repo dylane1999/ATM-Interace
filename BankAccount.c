@@ -128,15 +128,32 @@ void Encrypt(char message[]){
   }
 }
 
-void Transfer(BankAccount *Giver, BankAccount *Reciever,  int amount){
+void Transfer(BankAccount *Giver, BankAccount *head, char *RecievingUsername,  int amount){
 
     if (Giver->accountBalance < amount | amount < 0)
   {
-    printf("amount not available to transfer");
+    printf("amount not available to transfer or negative input");
     return;
   }
 
   Giver->accountBalance = Giver->accountBalance - amount;
+  BankAccount *tmp;
+  BankAccount *Reciever = NULL;
+  tmp = head;
+  while(tmp){
+    if (strcmp(tmp->username, RecievingUsername) == 0)
+    {
+      Reciever = tmp;
+      return;
+    }
+    tmp = tmp->next;
+  }
+  if (Reciever == NULL)
+  {
+    printf("account does not exist. Transfer Failed\n");
+    return;
+  }
+  
   Reciever->accountBalance = Reciever->accountBalance + amount;
-
+  return;
 }

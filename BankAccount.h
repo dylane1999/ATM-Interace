@@ -17,8 +17,9 @@ char* GetPassword(char *username, BankAccount *HeadAccount);
 void createAccount(BankAccount *AccountCreated, BankAccount *tail, BankAccount *head, char *username, char *password);
 void PrintNodes(BankAccount *head);
 void BankMenu(BankAccount *thisNode);
-void Transfer(BankAccount *Giver, BankAccount *Reciever,  int amount);
+void Transfer(BankAccount *Giver, BankAccount *head, char *RecievingUsername,  int amount);
 void Encrypt(char message[]);
+
 
 
 
